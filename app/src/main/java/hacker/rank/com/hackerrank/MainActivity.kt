@@ -5,6 +5,9 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
+import java.math.BigDecimal
+import java.text.DecimalFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,25 +36,22 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
-        //---- Challenge V ----- diagonal difference
-//        val sampleArray = Array(3) { Array<Int>(3) { 0 } }
-//        sampleArray[0] = arrayOf(11, 2, 4)
-//        sampleArray[1] = arrayOf(4, 5, 6)
-//        sampleArray[2] = arrayOf(10, 8, -12)
-//        diagonalDifference(sampleArray)
+        val sampleArr = Array(3) { Array(2) { 0 } }
+        sampleArr[0] = arrayOf(5, 3)
+        sampleArr[1] = arrayOf(3, 2)
+        sampleArr[2] = arrayOf(6, 5)
+        jimOrders(sampleArr)
     }
 
-//    //---- Challenge V ----- diagonal difference
-//    fun diagonalDifference(arr: Array<Array<Int>>): Int {
-//
-//        val d1 = Array(arr.size) { 0 }
-//        val d2 = Array(arr.size) { 0 }
-//        for (i in 0 until arr.size) {
-//            d1[i] = arr[i][i]
-//        }
-//        for (j in (arr.size - 1) downTo 0) {
-//            d2[(arr.size - 1) - j] = arr[j][(arr.size - 1) - j]
-//        }
-//        return Math.abs(d1.sum() - d2.sum())
-//    }
+
+    fun jimOrders(orders: Array<Array<Int>>): Array<Int> {
+
+        val timeArr = Array(orders.size) { 0 }
+        for (i in 0 until orders.size) {
+            timeArr[i] = orders[i][0] + orders[i][1]
+        }
+        val iterator = timeArr.iterator()
+        return timeArr
+    }
+
 }
