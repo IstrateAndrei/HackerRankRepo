@@ -36,22 +36,25 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
-        val sampleArr = Array(3) { Array(2) { 0 } }
-        sampleArr[0] = arrayOf(5, 3)
-        sampleArr[1] = arrayOf(3, 2)
-        sampleArr[2] = arrayOf(6, 5)
-        jimOrders(sampleArr)
+
+        twoArrays(3, arrayOf(1, 2, 0), arrayOf(0, 3, 1))
     }
 
 
-    fun jimOrders(orders: Array<Array<Int>>): Array<Int> {
+    fun twoArrays(k: Int, A: Array<Int>, B: Array<Int>): String {
 
-        val timeArr = Array(orders.size) { 0 }
-        for (i in 0 until orders.size) {
-            timeArr[i] = orders[i][0] + orders[i][1]
+        val arr = MutableList(0) { 0 }
+        val brr = MutableList(0) { 0 }
+
+        for (i in 0 until A.size) {
+            for (j in 0 until B.size) {
+                if (A[i] + B[j] >= k && !brr.contains(B[j])) {
+                    arr.add(i, A[i])
+                    brr.add(i, B[j])
+                    break
+                }
+            }
         }
-        val iterator = timeArr.iterator()
-        return timeArr
+        return if (arr.size == A.size && brr.size == B.size) "YES" else "NO"
     }
-
 }
